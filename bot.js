@@ -33,7 +33,7 @@ client.on('message', async msg =>{
 	let command = msg.content.toLowerCase().split(" ")[0];
 	command = command.slice(prefix.length)
 
-    if(command === `بينج`) {
+    if(command === `ping`) {
     let embed = new Discord.RichEmbed()
     .setColor(3447003)
     .setTitle("Pong!!")
@@ -55,7 +55,7 @@ client.on('message', async msg =>{
 	let command = msg.content.toLowerCase().split(" ")[0];
 	command = command.slice(prefix.length)
 
-    if(command === `صوره`){
+    if(command === `avatar`){
 	if(msg.channel.type === 'dm') return msg.channel.send("Nope Nope!! u can't use avatar command in DMs (:")
         let mentions = msg.mentions.members.first()
         if(!mentions) {
@@ -99,7 +99,7 @@ client.on('message', async msg => {
 	let command = msg.content.toLowerCase().split(" ")[0];
 	command = command.slice(prefix.length)
 
-	if (command === `شغل`) {
+	if (command === `play`) {
 		const voiceChannel = msg.member.voiceChannel;
         
         if (!voiceChannel) return msg.channel.send("انت لم تدخل روم صوتي");
@@ -179,7 +179,7 @@ client.on('message', async msg => {
             
         }
         
-	} else if (command === `تخطي`) {
+	} else if (command === `skip`) {
 
 		if (!msg.member.voiceChannel) return msg.channel.send("يجب ان تكون في روم صوتي");
         if (!serverQueue) return msg.channel.send("ليست هناك اغاني ليتم التخطي");
@@ -187,7 +187,7 @@ client.on('message', async msg => {
 		serverQueue.connection.dispatcher.end('تم تخطي الاغنية');
         return undefined;
         
-	} else if (command === `وقف`) {
+	} else if (command === `stop`) {
 
 		if (!msg.member.voiceChannel) return msg.channel.send("يجب ان تكون في روم صوتي");
         if (!serverQueue) return msg.channel.send("There is no Queue to stop!!");
@@ -196,7 +196,7 @@ client.on('message', async msg => {
 		serverQueue.connection.dispatcher.end('تم ايقاف الاغنية لقد خرجت من الروم الصوتي');
         return undefined;
         
-	} else if (command === `صوت`) {
+	} else if (command === `vol`) {
 
 		if (!msg.member.voiceChannel) return msg.channel.send("يجب ان تكون في روم صوتي");
 		if (!serverQueue) return msg.channel.send('يعمل الامر فقط عند تشغيل مقطع صوتي');
@@ -207,14 +207,14 @@ client.on('message', async msg => {
         
         return msg.channel.send(`درجة الصوت الان**${args[1]}**`);
 
-	} else if (command === `شغال ناو`) {
+	} else if (command === `np`) {
 
 		if (!serverQueue) return msg.channel.send('There is no Queue!');
 		const embedNP = new Discord.RichEmbed()
 	    .setDescription(`Now playing **${serverQueue.songs[0].title}**`)
         return msg.channel.sendEmbed(embedNP);
         
-	} else if (command === `q`) {
+	} else if (command === `queue`) {
 		
 		if (!serverQueue) return msg.channel.send('There is no Queue!!');
 		let index = 0;
@@ -226,14 +226,14 @@ client.on('message', async msg => {
 **Now playing :** **${serverQueue.songs[0].title}**`)
         .setColor("#f7abab")
 		return msg.channel.sendEmbed(embedqu);
-	} else if (command === `اقف`) {
+	} else if (command === `pause`) {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
 			return msg.channel.send('تم الايقاف');
 		}
 		return msg.channel.send('في انتظار تشغيل المقطع');
-	} else if (command === "كمل") {
+	} else if (command === "resume") {
 
 		if (serverQueue && !serverQueue.playing) {
 			serverQueue.playing = true;
@@ -313,18 +313,18 @@ function play(guild, song) {
 
 
 client.on('message', message => {
-    if (message.content === 'مساعده') {
+    if (message.content === 'help') {
         let helpEmbed = new Discord.RichEmbed()
         .setTitle('**أوامر الميوزك...**')
-        .setDescription('**برفكس البوت (r)**')
-        .addField('شغل', 'لتشغيل اغنية')
-        .addField('ادخل', 'دخول رومك الصوتي')
-        .addField('اخرج', 'الخروج من رومك الصوتي')
-        .addField('تخطي', 'تخطي الأغنية')
-        .addField('اقف', 'ايقاف الاغنية مؤقتا')
-        .addField('كمل', 'تكملة الاغنية')
-        .addField('q', 'اظهار قائمة التشغيل')
-        .addField('شغال ناو', 'اظهار الاغنية اللي انت مشغلها حاليا')
+        .setDescription('**برفكس البوت (!)**')
+        .addField('play', 'لتشغيل اغنية')
+        .addField('join', 'دخول رومك الصوتي')
+        .addField('disconnect', 'الخروج من رومك الصوتي')
+        .addField('skip', 'تخطي الأغنية')
+        .addField('pause', 'ايقاف الاغنية مؤقتا')
+        .addField('resume', 'تكملة الاغنية')
+        .addField('queue', 'اظهار قائمة التشغيل')
+        .addField('np', 'اظهار الاغنية اللي انت مشغلها حاليا')
         .setFooter('(general_commands) لاظهار الاوامر العامة')
       message.channel.send(helpEmbed);
     }
@@ -344,13 +344,13 @@ client.on('message', message => {
 
 client.on('ready', () => {
    console.log(`----------------`);
-      console.log(`Music Bot- Script By : الشيخ بريتي`);
+      console.log(`Music Bot- Script By :الشيخ بريتي`);
         console.log(`----------------`);
-      console.log(`ON ${client.guilds.size} Servers '     Script By : CF Na World Clan ' `);
+      console.log(`ON ${client.guilds.size} Servers '     الشيخ بريتي ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`الشيخ بريتي شخصيا`,"http://twitch.tv/Toxic Codes")
+client.user.setGame(`Toxic Codes Team`,"http://twitch.tv/Toxic Codes")
 client.user.setStatus("dnd")
 });
 
-client.login(NTI0Nzg4NTkwNjY5MjAxNDE4.DwWcHQ.yBx2Z-YSQC7JypjqHYCKoJOJd9g);
+client.login(NTI0Nzg4NTkwNjY5MjAxNDE4.DwWfYw.H5SY7aYuwIJZ6bNRUNj-OEJM-cg);
