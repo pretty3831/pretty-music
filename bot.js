@@ -344,13 +344,13 @@ client.on('message', message => {
 
 client.on('ready', () => {
    console.log(`----------------`);
-      console.log(`Music Bot- Script By :الشيخ بريتي`);
+      console.log(`Desert Bot- Script By : EX Clan`);
         console.log(`----------------`);
-      console.log(`ON ${client.guilds.size} Servers '     الشيخ بريتي ' `);
+      console.log(`ON ${client.guilds.size} Servers '     Script By : EX Clan ' `);
     console.log(`----------------`);
   console.log(`Logged in as ${client.user.tag}!`);
-client.user.setGame(`Toxic Codes Team`,"http://twitch.tv/Toxic Codes")
+client.user.setGame(`الشيخ بريتي | Last Music`,"http://twitch.tv/Death Shop")
 client.user.setStatus("dnd")
 });
 
-client.login(NTI0Nzg4NTkwNjY5MjAxNDE4.DwWfYw.H5SY7aYuwIJZ6bNRUNj-OEJM-cg);
+client.login(NTI0Nzg4NTkwNjY5MjAxNDE4.DwWn9g.C9uxudPfMuU5U-Q0XDUH1nDI72k);
